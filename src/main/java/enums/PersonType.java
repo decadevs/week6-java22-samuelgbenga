@@ -1,5 +1,5 @@
 package enums;
 
 public enum PersonType {
-    TEACHER, SENIOR, JUNIOR
+    TCH, SNR, JNR
 }
