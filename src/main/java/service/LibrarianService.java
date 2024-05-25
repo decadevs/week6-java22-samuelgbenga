@@ -6,8 +6,8 @@ import model.Person;
 public interface LibrarianService {
 
     public void addBookToLibrarian(Book book);
-    public void assignEngine(Person person);
-    public void issueBook();
+    public void assignBook(Person person);
+    public void assignBook();
     public void priorityRequestPool(Person person);
 
 

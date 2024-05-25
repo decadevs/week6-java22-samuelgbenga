@@ -2,10 +2,12 @@ package service.implementation;
 
 import model.Book;
 import model.Person;
+import org.w3c.dom.ls.LSOutput;
 import service.LibrarianService;
 import service.PersonTypeComparator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class LibrarianServiceImpl implements LibrarianService {
@@ -18,18 +20,9 @@ public class LibrarianServiceImpl implements LibrarianService {
     }
 
 
-    @Override
-    public void addBookToLibrarian(Book book) {
-        books.add(book);
-    }
 
 
 
-//    @Override
-//    public ArrayList<Book> getBooksFromLibrarian() {
-//        return books;
-//
-//    }
 
     private boolean isBookAvailable(Book book) {
 
@@ -46,8 +39,27 @@ public class LibrarianServiceImpl implements LibrarianService {
         books.remove(book);
     }
 
+    private boolean isPrioritize(){
+
+        Person person = usersPriorityQueue.peek();
+        for (Person person1: usersPriorityQueue) {
+            if(!person.book.equals(person1.book)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     @Override
-    public void assignEngine(Person person) {
+    public void addBookToLibrarian(Book book) {
+        books.add(book);
+    }
+
+
+    @Override
+    public void assignBook(Person person) {
         if(person.personType != null){
             if(isBookAvailable(person.book)){
                 System.out.println(person+" has been issued "+ person.book);
@@ -60,16 +72,19 @@ public class LibrarianServiceImpl implements LibrarianService {
         }else{
             System.out.println("Invalid Library User");
         }
-
-
     }
 
-    @Override
-    public void issueBook() {
 
+    @Override
+    public void assignBook() {
+        if(!isPrioritize()) {
+            usersPriorityQueue.clear();
+            System.out.println("Invalid Priority Queue");
+            return;
+        }
         while (!usersPriorityQueue.isEmpty()) {
             Person person = usersPriorityQueue.poll();
-            assignEngine(person);
+            assignBook(person);
         }
     }
 
@@ -77,12 +92,6 @@ public class LibrarianServiceImpl implements LibrarianService {
     public void priorityRequestPool(Person person) {
         if(person.personType != null){
             usersPriorityQueue.add(person);
-            Person person1 = usersPriorityQueue.peek();
-            if(!usersPriorityQueue.isEmpty() && !person1.book.equals(person.book)){
-                assignEngine(person);
-                usersPriorityQueue.remove(person);
-            }
-
         }else{
             System.out.println("Cannot hard an invalid user to priority request pool: "+person);
         }
