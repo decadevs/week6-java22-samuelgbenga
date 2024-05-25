@@ -1,12 +1,7 @@
 import model.Book;
 import model.Person;
 import service.LibrarianService;
-import service.PersonTypeComparator;
 import service.implementation.LibrarianServiceImpl;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.PriorityQueue;
 
 public class SchoolLibrary {
     public static void main(String[] args) {
@@ -35,7 +30,6 @@ public class SchoolLibrary {
 
 
 
-
         // Add book to library
         librarianService.addBookToLibrarian(book1);
         librarianService.addBookToLibrarian(book1);
@@ -48,22 +42,31 @@ public class SchoolLibrary {
 
 
         //make request for book
-        person1.requestBook(book2);
-        person2.requestBook(book1);
-        person3.requestBook(book1);
+        person1.requestBook(book1);
+        person2.requestBook(book3);
+        person3.requestBook(book5);
+        person5.requestBook(book4);
+        person4.requestBook(book2);
 
-        //test area
-
-
-        //assign book or issue book
-        //librarianService.issueBook(person1);
-
-        // assign based on priority
+        librarianService.assignEngine(person1);
+        // generate request pool
         librarianService.priorityRequestPool(person1);
         librarianService.priorityRequestPool(person2);
         librarianService.priorityRequestPool(person3);
 
-        librarianService.issueBookBasedOnPriority();
+        // issue books
+        //librarianService.issueBook();
+
+        /*
+        #############
+        once you made a class to implement another class
+        by default all method in the implementing class
+        becomes inaccessible to other class if not
+        explicitly defined in the interface class
+        as "public"
+        #############
+         */
+
 
 
     }

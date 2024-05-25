@@ -6,7 +6,6 @@ import service.LibrarianService;
 import service.PersonTypeComparator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class LibrarianServiceImpl implements LibrarianService {
@@ -48,7 +47,7 @@ public class LibrarianServiceImpl implements LibrarianService {
     }
 
     @Override
-    public void issueBook(Person person) {
+    public void assignEngine(Person person) {
         if(person.personType != null){
             if(isBookAvailable(person.book)){
                 System.out.println(person+" has been issued "+ person.book);
@@ -66,13 +65,12 @@ public class LibrarianServiceImpl implements LibrarianService {
     }
 
     @Override
-    public void issueBookBasedOnPriority() {
+    public void issueBook() {
 
         while (!usersPriorityQueue.isEmpty()) {
             Person person = usersPriorityQueue.poll();
-            issueBook(person);
+            assignEngine(person);
         }
-
     }
 
     @Override
@@ -81,7 +79,7 @@ public class LibrarianServiceImpl implements LibrarianService {
             usersPriorityQueue.add(person);
             Person person1 = usersPriorityQueue.peek();
             if(!usersPriorityQueue.isEmpty() && !person1.book.equals(person.book)){
-                issueBook(person);
+                assignEngine(person);
                 usersPriorityQueue.remove(person);
             }
 
