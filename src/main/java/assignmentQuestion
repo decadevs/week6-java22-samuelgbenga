@@ -1,0 +1,8 @@
+Optimization and Code Cleanup
+
+in the previous project, exceptions were not handled and an imperative
+style of programming was used. you are to use declarative programming
+as much as possible and handle exceptions effectively.
+
+Tips:
+convert all loops to its equivalent. using lambda functions.

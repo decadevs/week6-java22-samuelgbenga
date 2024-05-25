@@ -1,7 +1,9 @@
+import enums.PersonType;
 import model.Book;
 import model.Person;
 import service.LibrarianService;
 import service.implementation.LibrarianServiceImpl;
+
 
 public class SchoolLibrary {
     public static void main(String[] args) {
@@ -12,7 +14,8 @@ public class SchoolLibrary {
         Person person3 = new Person("Charlie Brown", "tch723");
         Person person4 = new Person("Diana Prince", "jnr123");
         Person person5 = new Person("Evan Wright", "tch129");
-        Person person6 = new Person("Eva rig", "snr109");
+        Person person6 =  new Person("Eva rig", "nr109");
+
 
         // instantiate books
         Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565");
@@ -43,11 +46,13 @@ public class SchoolLibrary {
 
 
         //make request for book
-        person1.requestBook(book2);
+        person1.requestBook(book1);
         person2.requestBook(book1);
         person3.requestBook(book1);
         person4.requestBook(book1);
         person5.requestBook(book1);
+        //person6.requestBook(book5);
+
 
         //librarianService.assignEngine(person1);
         // generate request pool
@@ -60,12 +65,12 @@ public class SchoolLibrary {
 
 
         // issue books
-        librarianService.assignBook(person1);
-        librarianService.assignBook(person2);
-        librarianService.assignBook(person3);
-        librarianService.assignBook(person4);
-        librarianService.assignBook(person5);
+        librarianService.assignBook(person6);
+
+
+        System.out.println("**************");
         librarianService.assignBook();
+
 
         /*
         #############

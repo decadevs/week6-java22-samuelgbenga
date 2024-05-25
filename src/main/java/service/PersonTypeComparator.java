@@ -7,7 +7,6 @@ import java.util.Comparator;
 
 public class PersonTypeComparator implements Comparator<Person> {
 
-
     @Override
     public int compare(Person p1, Person p2) {
 //        if((p1.personType == PersonType.TCH) && (p2.personType == PersonType.SNR)) {

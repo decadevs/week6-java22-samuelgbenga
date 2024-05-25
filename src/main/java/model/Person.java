@@ -19,25 +19,23 @@ public class Person {
     //check if the returned string is a legal personType
     private boolean checkPersonType(String pType){
 
-
-
         try{
             PersonType.valueOf(pType);
         }
-        catch(IllegalArgumentException e){
-            //System.out.println("Illegal Id card");
+        catch(Exception e){
             return false;
         }
         return true;
     }
 
-    public Person(String fullName, String personId) {
+    public Person(String fullName, String personId){
         this.fullName = fullName;
         this.personId = personId;
         String pType = splitPersonId();
         pType = pType.toUpperCase();
         boolean isPersonType = checkPersonType(pType);
         this.personType = (isPersonType)?PersonType.valueOf(pType): null;
+
     }
 
     public String getFullName() {
@@ -49,6 +47,7 @@ public class Person {
     }
 
     public void requestBook(Book book){
+
         this.book = book;
     }
 
