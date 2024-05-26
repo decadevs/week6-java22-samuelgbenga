@@ -41,7 +41,9 @@ public class LibrarianServiceImpl implements LibrarianService {
     // check if the books is to be prioritize
     // if a book exist that is not same returns false
     private boolean isToPrioritize(){
+
         Person person = usersPriorityQueue.peek();
+
 //        for (Person person1: usersPriorityQueue) {
 //            if(!person.book.equals(person1.book)) {
 //                return false;
@@ -115,7 +117,7 @@ public class LibrarianServiceImpl implements LibrarianService {
 //        }
         Optional.ofNullable(person.personType)
                 .ifPresentOrElse(_->usersPriorityQueue.add(person),
-                        () -> System.out.println("Invalid Library User: :"+person));
+                        () -> System.out.println("Invalid Library User: "+person));
 
 
     }
