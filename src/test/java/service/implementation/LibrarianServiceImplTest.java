@@ -46,7 +46,7 @@ class LibrarianServiceImplTest {
     }
 
     @Test
-    void assignBook() throws Exception {
+    void assignBookBasedOnPriority() throws Exception {
 
         Person person = new Person("John", "jnr12e");
         Person person1 = new Person("John1", "snr134");
@@ -61,12 +61,16 @@ class LibrarianServiceImplTest {
 
         Method method = librarianService.getClass().getDeclaredMethod("isToPrioritize");
         method.setAccessible(true);
+        librarianService.assignBook();
+        Field field = librarianService.getClass().getDeclaredField("usersPriorityQueue");
+        field.setAccessible(true);
+        PriorityQueue<Person> priorityQueue = (PriorityQueue<Person>) field.get(librarianService);
+        boolean isEmpty = priorityQueue.isEmpty();
 
-        assertEquals(false,  method.invoke(librarianService));
+        assertTrue(isEmpty);
+
 
     }
-
-
 
 
     @Test
